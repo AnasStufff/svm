@@ -1,6 +1,6 @@
 import numpy as np
 
-def train_svm(X, y, C=1.0, lr=0.001, epochs=1000):
+def train_svm(X, y, C=1.0, lr=0.01, epochs=1000):
     """
     Train a linear SVM using gradient descent.
 
