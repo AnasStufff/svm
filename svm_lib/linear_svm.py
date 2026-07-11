@@ -3,7 +3,6 @@ import numpy as np
 def train_svm(X, y, C=1.0, lr=0.01, epochs=1000):
     """
     Train a linear SVM using gradient descent.
-
     X: training data, shape (n_samples, n_features)
     y: labels, must be -1 or +1 (not 0/1)
     C: regularization strength
@@ -31,5 +30,5 @@ def train_svm(X, y, C=1.0, lr=0.01, epochs=1000):
 
 
 def predict(X, w, b):
-    """Return predicted class (-1 or +1) for each row in X."""
+    #Return predicted class (-1 or +1) for each row in X.
     return np.sign(X @ w + b)
