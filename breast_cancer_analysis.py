@@ -7,6 +7,7 @@ from svm_lib.linear_svm import train_svm, predict
 from sklearn.metrics import confusion_matrix, classification_report 
 import matplotlib.pyplot as plt
 import seaborn as sns
+
 data= load_breast_cancer()
 X=data.data 
 y=data.target 
@@ -26,7 +27,7 @@ X_scaled=scaler.fit_transform(X)
 print("Before scaling mean radius range:", round(X[:, 0].min(), 2), "to", round(X[:, 0].max(),2))
 print("After scaling mean radius range:", round(X_scaled[:, 0].min(),2), "to", round(X_scaled[:, 0].max(),2))
 
-X_train, X_test, y_train, y_test= train_test_split(X_scaled, y, test_size=0.2, random_state=42 )
+X_train, X_test, y_train, y_test= train_test_split(X_scaled, y, test_size=0.2, random_state=42)
 print(f"Training samples: {X_train.shape[0]}")
 print(f"Test samples: {X_test.shape[0]}")
 
@@ -53,3 +54,18 @@ plt.ylabel("Actual")
 plt.title("Breast cancer classification (confusion matrix)")
 plt.savefig("confusion_matrix.png")
 plt.show()
+
+
+#for comparison
+from sklearn.svm import SVC
+sklearn_model=SVC(kernel="linear", C=1.0)
+sklearn_model.fit(X_train, y_train_svm)
+sklearn_train_preds=sklearn_model.predict(X_train)
+sklearn_test_preds=sklearn_model.predict(X_test)
+sklearn_train_acc=np.mean(sklearn_train_preds==y_train_svm)
+sklearn_test_acc=np.mean(sklearn_test_preds==y_test_svm)
+print("Comparison")
+print(f"{'Model':<15}{'Train Acc':<12}{'Test Acc'}")
+print(f"{'Mine':<15}{train_accuracy:<12.2%}{test_accuracy:.2%}")
+print(f"{'sklearn':<15}{sklearn_train_acc:<12.2%}{sklearn_test_acc:.2%}")
+
