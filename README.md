@@ -12,3 +12,6 @@ On this particular train or test split, my implementation achieved marginally hi
 
 # many random states comparisons 
 Across 6 different train and test splits, my from-scratch linear SVM achieved a mean test accuracy of 97.22%, compared to 96.93% for scikit-learn's SVC. The two implementations agreed exactly on 4 of 6 splits, with the small remaining differences attributable to normal variance between gradient-descent and exact QP optimization, rather than a meaningful difference in model quality.
+
+# mnist classification comparison 
+I used a One-vs-Rest strategy, which performed slightly worse than sklearn's default One-vs-One approach. My implementation achieved 96.67% test accuracy, compared to 97.50% for sklearn's SVC. This gap likely comes from two factors: One-vs-One tends to outperform One-vs-Rest since each binary model only has to separate two specific digits rather than one digit from all nine others, and sklearn's exact QP solver converges more precisely than my gradient-descent approach — a pattern seen consistently throughout this project.
